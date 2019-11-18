@@ -16,7 +16,7 @@
     <br>
 
     {% if type == 'generic'%}
-        <h2>GENERIC</h2>
+        <h2>Full Patient Overview</h2>
         <h4>LIST OF DOCTORS</h4>
         {% for d in doctors %}
             <div>
@@ -40,11 +40,11 @@
     {% endif %}
 
     {% if type == 'report'%}
-        <div><p>{{ patient.full_name }} has taken <b>{{ medications.med_id }}</b></p></div>
+        <div><p>{{ patient.full_name }} has a report <b>{{ reports.report_id }}</b></p></div>
     {% endif %}
 
-    {% if type == 'medication'%}
-        <div><p>{{ patient.full_name }} has taken <b>{{ medications.med_id }}</b></p></div>
+    {% if type == 'doctor'%}
+        <div><p>{{ patient.full_name }} has visited <b>{{ doctors.doc_id }}</b></p></div>
     {% endif %}
 
     

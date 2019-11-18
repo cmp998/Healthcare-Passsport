@@ -52,7 +52,21 @@ def search():
 def newreport():
     form = NewReportForm()
     if form.validate_on_submit():
-        #Add the report to our database
+        #See if the medication is in db yet
+        if not Medication.query.get(form.med_id.data):
+            print("didn't see this med, adding")
+            m = Medication(report_id = form.report_id.data, med_id = form.med_id.data)
+            db.session.add(m)
+            db.session.commit()
+            print("added meds: ", Medication.query.get(form.med_id.data))
+        #See if the doctor is in db yet
+        if not Doctor.query.get(form.doc_id.data):
+            print("didn't see this doc, adding")
+            d = Doctor(doc_id = form.doc_id.data, doc_name = "Dr. Temp Name", address = "Temp Doctors Address")
+            db.session.add(d)
+            db.session.commit()
+            print("added doc: ", Doctor.query.get(form.doc_id.data))
+        #Add report to the db
         r = Report(report_id = form.report_id.data,
             ssn = form.ssn.data,
             doc_id = form.doc_id.data,
@@ -90,3 +104,19 @@ def results():
         {'SSN': "999 99 9999",'DocID': 'Doc2'}
     ] 
     return render_template('results.html',title="Results",results=results)
+
+@app.route('/clean_house')
+def clean_house():
+    print(Patient.query.all())
+    for p in Patient.query.all():
+        print(p)
+        db.session.delete(p)
+    for d in Doctor.query.all():
+        db.session.delete(d)
+    for m in Medication.query.all():
+        db.session.delete(m)
+    for r in Report.query.all():
+        db.session.delete(r)
+    db.session.commit()
+    print(Patient.query.all())
+    return render_template('index.html',title="Cleaned House")
