@@ -1,0 +1,17 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - HealthCare Passport</title>
+      {% else %}
+      <title>Welcome to HealthCare Passport</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>HealtCare Passport: 
+            <a href="/index">Home</a>
+            <a href="/search">Search</a>
+            <a href="/results">Results</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>

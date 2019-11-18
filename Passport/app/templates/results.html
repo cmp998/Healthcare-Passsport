@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Here are your results for {{patient.full_name}}</h1>
+    <a href="/search">New Search</a><br>
+
+    <h2>Search Criteria</h2>
+        {% if form%}
+            <div>Patient: {{form.patient_id.data}}</div>
+            <div>Doctor: {{form.doctor_id.data}}</div>
+            <div>Medication: {{form.medication_id.data}}</div>
+            <div>Report: {{form.report_id.data}}</div>
+        {% endif %}
+
+    <br>
+    <br>
+
+    {% if type == 'generic'%}
+        <h2>GENERIC</h2>
+        <h4>LIST OF DOCTORS</h4>
+        {% for d in doctors %}
+            <div>
+                <p>{{ patient.full_name }} has visited <b>{{ d.doc_name }}</b> at <b>{{d.address}}</b></p>
+            </div>
+        {% endfor %}
+
+        <h4>LIST OF MEDICATION</h4>
+        {% for m in medications %}
+            <div><p>{{ patient.full_name }} has taken <b>med{{ m.med_id }}</b> from <b>report {{m.report_id}}</b></p></div>
+        {% endfor %}
+
+        <h4>LIST OF REPORTS</h4>
+        {% for r in reports %}
+            <div><p><b>Report {{ r.report_id }}</b> for {{patient.full_name}}, Doctor:{{r.doc_id}},</p></div>
+        {% endfor %}
+    {% endif %}
+
+    {% if type == 'medication'%}
+        <div><p>{{ patient.full_name }} has taken <b>{{ medications.med_id }}</b></p></div>
+    {% endif %}
+
+    {% if type == 'report'%}
+        <div><p>{{ patient.full_name }} has taken <b>{{ medications.med_id }}</b></p></div>
+    {% endif %}
+
+    {% if type == 'medication'%}
+        <div><p>{{ patient.full_name }} has taken <b>{{ medications.med_id }}</b></p></div>
+    {% endif %}
+
+    
+
+{% endblock %}

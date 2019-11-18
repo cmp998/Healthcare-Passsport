@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <html>
+        <head>
+            <title>{{ title }} - HealthCare Passport</title>
+        </head>
+        <body>
+            {% if create == "Report" %}
+            <div>Created new Report for {{form.ssn.data}}</div>
+            {% endif %}
+            {% if create == "Patient" %}
+            <div>Created new patient for {{form.full_name.data}}</div>
+            {% endif %}
+            <a href="/newpatient">Create New Patient</a>
+            <a href="/newreport">Create New Report</a>
+            <a href="/search">Search Archives</a>
+        </body>
+    </html>
+{% endblock %}

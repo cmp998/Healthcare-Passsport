@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Search</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.patient_id.label }}
+            {{ form.patient_id(size=32) }}
+        </p>
+        <p>
+            {{ form.doctor_id.label }}
+            {{ form.doctor_id() }}
+        </p>
+        <p>
+            {{ form.medication_id.label }}
+            {{ form.medication_id() }}
+        </p>
+        <p>
+            {{ form.report_id.label }} 
+            {{ form.report_id() }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
