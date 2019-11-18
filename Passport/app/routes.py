@@ -16,35 +16,35 @@ def search():
     form = SearchForm()
     if form.validate_on_submit():
         if form.report_id.data:
-            #Only a specfic report
-            return render_template('results.html', 
-                    reports = Report.query.get(form.report_id.data), 
-                    form=form, 
-                    type='report',
-                    patient=Patient.query.get(form.patient_id.data))
+            if Report.query.get(form.report_id.data):
+                #Only a specfic report
+                return render_template('results.html', patient = Patient.query.get(form.patient_id.data), form=form, 
+                                        type='report', reports = Report.query.get(form.report_id.data))
+            else:
+                return render_template('search.html',title='Search',form=form, error="Invalid Report")
+
         elif form.doctor_id.data:
-            #Only a specific doctor
-            return render_template('results.html', 
-                    doctors=Doctor.query.get(form.doctor_id.data), 
-                    form=form, 
-                    type='doctor',
-                    patient=Patient.query.get(form.patient_id.data))
+            if Doctor.query.get(form.doctor_id.data):
+                #Only a specific doctor
+                return render_template('results.html', patient=Patient.query.get(form.patient_id.data), form=form, 
+                                        type='doctor', doctors=Doctor.query.get(form.doctor_id.data))
+            else:
+                return render_template('search.html',title='Search',form=form, error="Invalid Doctor")
         elif form.medication_id.data:
-            #Only a specific medication
-            return render_template('results.html', 
-                    medications=Medication.query.get(form.medication_id.data), 
-                    form=form, 
-                    type='medication',
-                    patient=Patient.query.get(form.patient_id.data))
+            if Medication.query.get(form.medication_id.data):
+                #Only a specific medication
+                return render_template('results.html', patient=Patient.query.get(form.patient_id.data), form=form, 
+                                        type='medication', medications=Medication.query.get(form.medication_id.data))
+            else:
+                return render_template('search.html',title='Search',form=form, error="Invalid Medication")
         else:
             #All info about patient
-            return render_template('results.html',
-                    form=form,
-                    type='generic',
-                    patient=Patient.query.get(form.patient_id.data),
-                    medications=Medication.query.all(),
-                    doctors=Doctor.query.all(),
-                    reports = Report.query.all())
+            if Patient.query.get(form.patient_id.data):
+                return render_template('results.html', patient=Patient.query.get(form.patient_id.data), form=form,
+                                        type='generic', 
+                                        medications=Medication.query.all(), doctors=Doctor.query.all(), reports = Report.query.all())
+            else:
+                return render_template('search.html',title='Search',form=form, error="Invalid Patient")
 
     return render_template('search.html',title='Search',form=form)
 
@@ -99,17 +99,12 @@ def newPatient():
 
 @app.route('/results')
 def results():
-    results = [
-        {'SSN': "123 45 6789",'DocID': 'Doc1'},
-        {'SSN': "999 99 9999",'DocID': 'Doc2'}
-    ] 
-    return render_template('results.html',title="Results",results=results)
+    return redirect('/search')
 
 @app.route('/clean_house')
 def clean_house():
-    print(Patient.query.all())
+    print("List of patients before: ", Patient.query.all())
     for p in Patient.query.all():
-        print(p)
         db.session.delete(p)
     for d in Doctor.query.all():
         db.session.delete(d)
@@ -118,5 +113,5 @@ def clean_house():
     for r in Report.query.all():
         db.session.delete(r)
     db.session.commit()
-    print(Patient.query.all())
-    return render_template('index.html',title="Cleaned House")
+    print("List of patients after: ", Patient.query.all())
+    return redirect('/index')

@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Here are your results for {{patient.full_name}}</h1>
+    <p>General Patient Info:  SSN: {{patient.ssn}}, DOB: {{patient.dob}}, Phone: {{patient.phone}}, Gender: {{patient.gender}}</p>
     <a href="/search">New Search</a><br>
 
     <h2>Search Criteria</h2>
@@ -40,7 +41,7 @@
     {% endif %}
 
     {% if type == 'report'%}
-        <div><p>{{ patient.full_name }} has a report <b>{{ reports.report_id }}</b></p></div>
+        <div><p>{{ patient.full_name }} has a <b>report{{ reports.report_id }}</b>. Purpose of visit <b>{{reports.purpose}}</b>. Saw <b>doctor{{reports.doc_id}}</b>. Was prescribed <b>med{{reports.med_id}}</b></p></div>
     {% endif %}
 
     {% if type == 'doctor'%}
