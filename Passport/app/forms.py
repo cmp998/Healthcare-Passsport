@@ -10,18 +10,18 @@ class SearchForm(FlaskForm):
     submit = SubmitField('Search')
 
 class NewPatientForm(FlaskForm):
-    ssn = StringField('SSN', validators=[DataRequired()])
-    full_name = StringField('FullName', validators=[DataRequired()])
-    dob = StringField('DOB', validators=[DataRequired()])
-    phone = StringField('Phone', validators=[DataRequired()])
-    gender = StringField('Gender', validators=[DataRequired()])
+    ssn = StringField('SSN*', validators=[DataRequired()])
+    full_name = StringField('FullName*', validators=[DataRequired()])
+    dob = StringField('DOB*', validators=[DataRequired()])
+    phone = StringField('Phone*', validators=[DataRequired()])
+    gender = StringField('Gender*', validators=[DataRequired()])
     submit = SubmitField('Create')
 
 
 class NewReportForm(FlaskForm):
-    report_id = StringField('ReportID', validators=[DataRequired()])
-    ssn = StringField('SSN', validators=[DataRequired()])
-    doc_id = StringField('DocID', validators=[DataRequired()])
+    report_id = StringField('ReportID*', validators=[DataRequired()])
+    ssn = StringField('SSN*', validators=[DataRequired()])
+    doc_id = StringField('DocID*', validators=[DataRequired()])
     doc_name = StringField('Doc_Name')
     doc_address = StringField('Doc_Address')
     med_id = StringField('MedID')
