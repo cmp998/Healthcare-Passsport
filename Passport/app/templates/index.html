@@ -4,6 +4,8 @@
     <html>
         <head>
             <title>{{ title }} - HealthCare Passport</title>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         </head>
         <body>
             {% if create == "Report" %}
@@ -12,9 +14,18 @@
             {% if create == "Patient" %}
             <div>Created new patient for {{form.full_name.data}}</div>
             {% endif %}
-            <a href="/newpatient">Create New Patient</a>
-            <a href="/newreport">Create New Report</a>
-            <a href="/search">Search Archives</a>
+            <div class="btn-toolbar" style="justify-content: center; display: flex;">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a href="/newpatient" class = "btn btn-primary btn-lg active" role="button" aria-pressed="true">Create New Patient</a>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a href="/newreport" class = "btn btn-primary btn-lg active" role="button" aria-pressed="true">Create New Report</a>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a href="/search" class = "btn btn-primary btn-lg active" role="button" aria-pressed="true">Search Archives</a>
+                </div>
+            </div>
+           
         </body>
     </html>
 {% endblock %}
