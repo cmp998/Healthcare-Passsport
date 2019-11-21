@@ -6,19 +6,19 @@
       {% if title %}
       <title>{{ title }} - HealthCare Passport</title>
       {% else %}
-      <title>Welcome to HealthCare Passport</title>
+      <!--<title>Welcome to HealthCare Passport</title>-->
       {% endif %}
       <!-- main navigation bar that goes on each page -->
-      <h1>Welcome to your healthcare passport!</h1>
       <nav class="navbar navbar-default">
-            <ul class="nav navbar-nav navbar-center">
-                <li><a href= "/index">Home</a></li>
-                <li><a href="/search">Search</a></li>
-                <li><a href="/results">Results</a></li>
-                <li><a href="/clean_house">Clean House</a></li>
-            </ul>
+          <div class="navbar-header"><a class="navbar-brand" >Healthcare Passport</a></div>
+          <div class ="navbar navbar-expand bg-light justify-content-center">
+              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/index">Home</a></li></ul>
+              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/search">Search</a></li></ul>
+              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/results">Results</a></li></ul>
+              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/clean_house">Clean House</a></li></ul>
+          </div>
         
-    </nav>
+      </nav>
     </head>
     <body>  
         <!--
