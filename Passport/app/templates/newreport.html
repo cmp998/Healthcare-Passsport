@@ -8,8 +8,8 @@
         <p>{{ form.report_id.label }} {{ form.report_id(size=32) }}</p>
         <p>{{ form.ssn.label }} {{ form.ssn(size=32) }}</p>
         <p>{{ form.doc_id.label }} {{ form.doc_id(size=32) }}</p>
-        <p>{{ form.doc_name.label }} {{ form.doc_name(size=32) }}</p>
-        <p>{{ form.doc_address.label }} {{ form.doc_address(size=32) }}</p>
+        <p>{{ form.doc_name.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_name(size=32) }}</p>
+        <p>{{ form.doc_address.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_address(size=32) }}</p>
         <p>{{ form.med_id.label }} {{ form.med_id(size=32) }}</p>
         <p>{{ form.purpose.label }} {{ form.purpose(size=32) }}</p>
         <p>{{ form.patient_info.label }} {{ form.patient_info(size=32) }}</p>
