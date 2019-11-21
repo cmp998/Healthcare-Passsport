@@ -53,26 +53,32 @@ def newreport():
     form = NewReportForm()
     if form.validate_on_submit():
         #See if the medication is in db yet
-        if not Medication.query.get(form.med_id.data):
+        if not Medication.query.get(form.med_id.data) and form.med_id.data:
             print("didn't see this med, adding")
             m = Medication(report_id = form.report_id.data, med_id = form.med_id.data)
             db.session.add(m)
             db.session.commit()
             print("added meds: ", Medication.query.get(form.med_id.data))
+
         #See if the doctor is in db yet
-        if not Doctor.query.get(form.doc_id.data):
+        if not Doctor.query.get(form.doc_id.data) and form.doc_name.data and form.doc_address.data:
             print("didn't see this doc, adding")
-            d = Doctor(doc_id = form.doc_id.data, doc_name = "Dr. Temp Name", address = "Temp Doctors Address")
+            d = Doctor(doc_id = form.doc_id.data, doc_name = form.doc_name.data, address = form.doc_address.data)
             db.session.add(d)
             db.session.commit()
             print("added doc: ", Doctor.query.get(form.doc_id.data))
+        elif not Doctor.query.get(form.doc_id.data):
+            return render_template('newreport.html',title='New Report',form=form, error="New Doctor Detected: Please Include All Info")
+
         #Add report to the db
+        if Report.query.get(form.report_id.data):
+            return render_template('newreport.html',title='New Report',form=form, error="Duplicated Report ID")
         r = Report(report_id = form.report_id.data,
-            ssn = form.ssn.data,
-            doc_id = form.doc_id.data,
-            med_id = form.med_id.data,
-            purpose = form.purpose.data,
-            patient_info = form.patient_info.data,)
+                   ssn = form.ssn.data,
+                   doc_id = form.doc_id.data,
+                   med_id = form.med_id.data,
+                   purpose = form.purpose.data,
+                   patient_info = form.patient_info.data,)
         db.session.add(r)
         db.session.commit()
 

@@ -20,19 +20,27 @@
         <h2>Full Patient Overview</h2>
         <h4>LIST OF DOCTORS</h4>
         {% for d in doctors %}
-            <div>
-                <p>{{ patient.full_name }} has visited <b>{{ d.doc_name }}</b> at <b>{{d.address}}</b></p>
-            </div>
+            {% for r in reports %}
+                {% if r.doc_id == d.doc_id and r.ssn == patient.ssn %}
+                <div><p>{{ patient.full_name }} has visited <b>{{ d.doc_name }}</b> at <b>{{d.address}}</b></p></div>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
 
         <h4>LIST OF MEDICATION</h4>
         {% for m in medications %}
-            <div><p>{{ patient.full_name }} has taken <b>med{{ m.med_id }}</b> from <b>report {{m.report_id}}</b></p></div>
+            {% for r in reports %}
+                {% if r.ssn == patient.ssn and m.report_id == r.report_id %}
+                    <div><p>{{ patient.full_name }} has taken <b>med{{ m.med_id }}</b> from <b>report {{m.report_id}}</b></p></div>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
 
         <h4>LIST OF REPORTS</h4>
         {% for r in reports %}
-            <div><p><b>Report {{ r.report_id }}</b> for {{patient.full_name}}, Doctor:{{r.doc_id}},</p></div>
+            {% if r.ssn == patient.ssn %}
+                <div><p><b>Report {{ r.report_id }}</b> for {{patient.full_name}} visting <b>Doctor:{{r.doc_id}}</b> {% if r.med_id %} who prescibed <b>med{{r.med_id}}</b> {% endif %} </p></div>
+            {% endif %}
         {% endfor %}
     {% endif %}
 

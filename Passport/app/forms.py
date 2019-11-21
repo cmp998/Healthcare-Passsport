@@ -22,6 +22,8 @@ class NewReportForm(FlaskForm):
     report_id = StringField('ReportID', validators=[DataRequired()])
     ssn = StringField('SSN', validators=[DataRequired()])
     doc_id = StringField('DocID', validators=[DataRequired()])
+    doc_name = StringField('Doc_Name')
+    doc_address = StringField('Doc_Address')
     med_id = StringField('MedID')
     purpose = StringField('POV')
     patient_info = StringField('PatientInfo')
