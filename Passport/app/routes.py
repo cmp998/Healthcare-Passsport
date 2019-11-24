@@ -119,10 +119,6 @@ def newPatient():
         return render_template('index.html', create = "Patient", form = form)
     return render_template('newpatient.html',title='NewPatient', form = form)
 
-@app.route('/results')
-def results():
-    return redirect('/search')
-
 @app.route('/clean_house')
 def clean_house():
     print("List of patients before: ", Patient.query.all())

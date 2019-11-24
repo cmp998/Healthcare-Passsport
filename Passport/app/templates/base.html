@@ -2,31 +2,25 @@
     
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
       {% if title %}
       <title>{{ title }} - HealthCare Passport</title>
       {% else %}
-      <!--<title>Welcome to HealthCare Passport</title>-->
+      Welcome to HealthCare Passport</title>
       {% endif %}
       <!-- main navigation bar that goes on each page -->
       <nav class="navbar navbar-default">
-          <div class="navbar-header"><a class="navbar-brand" >Healthcare Passport</a></div>
+          <div class="navbar-header" ><a class="navbar-brand" style="font-size: 50px;">Healthcare Passport</a></div>
           <div class ="navbar navbar-expand bg-light justify-content-center">
               <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/index">Home</a></li></ul>
               <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/search">Search</a></li></ul>
-              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/results">Results</a></li></ul>
               <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/clean_house">Clean House</a></li></ul>
+              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/newpatient">Create New Patient</a></li></ul>
+              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/newreport">Create New Report</a></li></ul>
           </div>
-        
-      </nav>
+        </nav>
     </head>
-    <body>  
-        <!--
-        <a href="/index">Home</a>
-        <a href="/search">Search</a>
-        <a href="/results">Results</a>
-        <a href="/clean_house">Clean House</a>
-        -->
+    <body> 
         </div>
         <hr>
         {% block content %}{% endblock %}
