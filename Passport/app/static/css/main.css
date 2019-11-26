@@ -1,0 +1,14 @@
+h1 {
+    font-weight:bold;
+    text-align:center;
+}
+div.form {
+    text-align:center;
+}
+head {
+    color: deeppink;
+}
+div.createNew{
+    position: relative;
+    text-align: center;
+}
