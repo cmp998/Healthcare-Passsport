@@ -10,10 +10,10 @@
         </head>
         <body>
             {% if create == "Report" %}
-            <div>Created new Report for Patient {{form.ssn.data}}</div>
+            <div class="createNew">Created new Report for Patient {{form.ssn.data}}</div>
             {% endif %}
             {% if create == "Patient" %}
-            <div>Created new patient for {{form.full_name.data}}</div>
+            <div class="createNew">Created new patient for {{form.full_name.data}}</div>
             {% endif %}
            <h1> Welcome to your Healthcare Passport!</h1>
            <div class = "cold-md-auto"> 
