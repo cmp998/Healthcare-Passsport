@@ -10,14 +10,12 @@
         </head>
         <body>
             {% if create == "Report" %}
-            <!--<div class="createNew">Created new Report for Patient {{form.ssn.data}}</div>-->
             <div class="alert alert-success alert-dismissible">
                 <a href="/index" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Success!</strong> Created new report for Patient {{form.ssn.data}}
             </div>
             {% endif %}
             {% if create == "Patient" %}
-            <!--<div class="createNew">Created new patient for {{form.full_name.data}}</div>-->
             <div class="alert alert-success alert-dismissible">
                 <a href="/index" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Success!</strong> Created new report for Patient {{form.ssn.data}}
