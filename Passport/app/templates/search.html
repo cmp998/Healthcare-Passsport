@@ -8,6 +8,7 @@
     <p>{% if error %}*{{error}}*{% endif%}</p>
     <div class="form">
         <form action="" method="post" novalidate>
+            <!-- sizes of forms are so wack so that they line up with our current prompts -->
             {{ form.hidden_tag() }}
             <p>
                 {{ form.patient_id.label }}

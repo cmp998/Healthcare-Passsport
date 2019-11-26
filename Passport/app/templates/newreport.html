@@ -3,17 +3,20 @@
 {% block content %}
     <h1>New Report Form</h1>
     <p>{% if error %}*{{error}}*{% endif%}</p>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>{{ form.report_id.label }} {{ form.report_id(size=32) }}</p>
-        <p>{{ form.ssn.label }} {{ form.ssn(size=32) }}</p>
-        <p>{{ form.doc_id.label }} {{ form.doc_id(size=32) }}</p>
-        <p>{{ form.doc_name.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_name(size=32) }}</p>
-        <p>{{ form.doc_address.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_address(size=32) }}</p>
-        <p>{{ form.med_id.label }} {{ form.med_id(size=32) }}</p>
-        <p>{{ form.purpose.label }} {{ form.purpose(size=32) }}</p>
-        <p>{{ form.patient_info.label }} {{ form.patient_info(size=32) }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>    
+    <div class="form">
+        <form action="" method="post" novalidate>
+            <!-- sizes of forms are so wack so that they line up with our current prompts -->
+            {{ form.hidden_tag() }}
+            <p>{{ form.report_id.label }} {{ form.report_id(size=34) }}</p>
+            <p>{{ form.ssn.label }} {{ form.ssn(size=38) }}</p>
+            <p>{{ form.doc_id.label }} {{ form.doc_id(size=37) }}</p>
+            <p>{{ form.doc_name.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_name(size=34) }}</p>
+            <p>{{ form.doc_address.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_address(size=33) }}</p>
+            <p>{{ form.med_id.label }} {{ form.med_id(size=38) }}</p>
+            <p>{{ form.purpose.label }} {{ form.purpose(size=31) }}</p>
+            <p>{{ form.patient_info.label }} {{ form.patient_info(size=35) }}</p>
+            <p>{{ form.submit() }}</p>
+        </form>    
+    </div>
 {% endblock %}
 

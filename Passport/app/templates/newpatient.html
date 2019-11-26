@@ -3,13 +3,16 @@
 {% block content %}
     <h1>New Patient Form</h1>
     <p>{% if error %}*{{error}}*{% endif%}</p>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>{{ form.ssn.label }} {{ form.ssn(size=32) }}</p>
-        <p>{{ form.full_name.label }} {{ form.full_name(size=32) }}</p>
-        <p>{{ form.dob.label }} {{ form.dob(size=32) }}</p>
-        <p>{{ form.phone.label }} {{ form.phone(size=32) }}</p>
-        <p>{{ form.gender.label }} {{ form.gender(size=32) }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>    
+    <div class="form">
+        <form action="" method="post" novalidate>
+            <!-- sizes of forms are so wack so that they line up with our current prompts -->
+            {{ form.hidden_tag() }}
+            <p>{{ form.ssn.label }} {{ form.ssn(size=32) }}</p>
+            <p>{{ form.full_name.label }} {{ form.full_name(size=28) }}</p>
+            <p>{{ form.dob.label }} {{ form.dob(size=32) }}</p>
+            <p>{{ form.phone.label }} {{ form.phone(size=31) }}</p>
+            <p>{{ form.gender.label }} {{ form.gender(size=30) }}</p>
+            <p>{{ form.submit() }}</p>
+        </form>    
+    </div>
 {% endblock %}

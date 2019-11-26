@@ -25,6 +25,6 @@ class NewReportForm(FlaskForm):
     doc_name = StringField('Doc_Name')
     doc_address = StringField('Doc_Address')
     med_id = StringField('MedID')
-    purpose = StringField('POV')
+    purpose = StringField('Purpose of Visit')
     patient_info = StringField('PatientInfo')
     submit = SubmitField('Create')
