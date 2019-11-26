@@ -22,7 +22,10 @@
         {% for d in doctors %}
             {% for r in reports %}
                 {% if r.doc_id == d.doc_id and r.ssn == patient.ssn %}
-                <div><p>{{ patient.full_name }} has visited <b>{{ d.doc_name }}</b> at <b>{{d.address}}</b></p></div>
+                <div>
+                    <p>{{ patient.full_name }} has visited <b>{{ d.doc_name }}</b> at <b>{{d.address}}</b>
+                    <a href = '/delete_doc/{{d.doc_id}}'> Delete </a></p>
+                </div>
                 {% endif %}
             {% endfor %}
         {% endfor %}
@@ -31,7 +34,10 @@
         {% for m in medications %}
             {% for r in reports %}
                 {% if r.ssn == patient.ssn and m.report_id == r.report_id %}
-                    <div><p>{{ patient.full_name }} has taken <b>med{{ m.med_id }}</b> from <b>report {{m.report_id}}</b></p></div>
+                    <div>
+                        <p>{{ patient.full_name }} has taken <b>med{{ m.med_id }}</b> from <b>report {{m.report_id}}</b>
+                        <a href = '/delete_med/{{m.med_id}}'> Delete </a></p>
+                    </div>
                 {% endif %}
             {% endfor %}
         {% endfor %}
@@ -39,7 +45,10 @@
         <h4>LIST OF REPORTS</h4>
         {% for r in reports %}
             {% if r.ssn == patient.ssn %}
-                <div><p><b>Report {{ r.report_id }}</b> for {{patient.full_name}} visting <b>Doctor:{{r.doc_id}}</b> {% if r.med_id %} who prescibed <b>med{{r.med_id}}</b> {% endif %} </p></div>
+                <div>
+                    <p><b>Report {{ r.report_id }}</b> for {{patient.full_name}} visting <b>Doctor:{{r.doc_id}}</b> {% if r.med_id %} who prescibed <b>med{{r.med_id}}</b> {% endif %} 
+                    <a href = '/delete_report/{{r.report_id}}'> Delete </a></p>
+                </div>
             {% endif %}
         {% endfor %}
     {% endif %}
