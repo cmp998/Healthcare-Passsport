@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>New Patient Form</h1>
+
 
     {% if error %}
         <!--<div class="createNew">Created new Report for Patient {{form.ssn.data}}</div>-->
@@ -10,7 +10,7 @@
             <strong>Failure!</strong> There is already a patient with this id: {{form.ssn.data}}
         </div>
     {% endif %}
-
+    <h1>New Patient Form</h1>
     <div class="form">
         <form action="" method="post" novalidate>
             <!-- sizes of forms are so wack so that they line up with our current prompts -->

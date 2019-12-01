@@ -12,3 +12,9 @@ div.createNew{
     position: relative;
     text-align: center;
 }
+div.centerTable{
+    margin: 100px 100px 100px 100px;
+}
+p1 {
+    font-weight:bold;
+}

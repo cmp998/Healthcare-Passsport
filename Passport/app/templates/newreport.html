@@ -7,14 +7,18 @@
         <form action="" method="post" novalidate>
             <!-- sizes of forms are so wack so that they line up with our current prompts -->
             {{ form.hidden_tag() }}
+            <!-- Necessary information -->
             <p>{{ form.report_id.label }} {{ form.report_id(size=34) }}</p>
             <p>{{ form.ssn.label }} {{ form.ssn(size=38) }}</p>
             <p>{{ form.doc_id.label }} {{ form.doc_id(size=37) }}</p>
-            <p>{{ form.doc_name.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_name(size=34) }}</p>
-            <p>{{ form.doc_address.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_address(size=33) }}</p>
             <p>{{ form.med_id.label }} {{ form.med_id(size=38) }}</p>
             <p>{{ form.purpose.label }} {{ form.purpose(size=31) }}</p>
             <p>{{ form.patient_info.label }} {{ form.patient_info(size=35) }}</p>
+            <!-- Auxillary information -->
+            <p>{{ form.doc_name.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_name(size=34) }}</p>
+            <p>{{ form.doc_address.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {% if error == "New Hospital Detected: Please Include All Info" %}*{% endif%}{% if error == "New Department Detected: Please Include All Info" %}*{% endif%} {{ form.doc_address(size=33) }}</p>
+            <p>{{ form.doc_department.label }} {% if error == "New Department Detected: Please Include All Info" %}*{% endif%} {{ form.doc_department(size=34) }}</p>
+            <p>{{ form.hospital_name.label}}{% if error == "New Department Detected: Please Include All Info" %}*{% endif%}{% if error == "New Hospital Detected: Please Include All Info" %}*{% endif%}{{ form.hospital_name(size=30) }}</p>
             <p>{{ form.submit() }}</p>
         </form>    
     </div>

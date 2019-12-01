@@ -87,6 +87,27 @@ def newreport():
         elif not Doctor.query.get(form.doc_id.data):
             return render_template('newreport.html',title='New Report',form=form, error="New Doctor Detected: Please Include All Info")
 
+        #See if the hopsital exists
+        if not Hospital.query.get(form.doc_address.data) and form.hospital_name.data and form.doc_address.data:
+            print("didn't see this hospital, adding")
+            h = Hospital(hospital_name = form.hospital_name.data, address = form.doc_address.data)
+            db.session.add(h)
+            db.session.commit()
+            print("added hospital: ", Hospital.query.get(form.doc_address.data))
+        elif not Hospital.query.get(form.hospital_name.data):
+            return render_template('newreport.html',title='New Report', form=form, error="New Hospital Detected: Please Include All Info")
+
+        #See if the department exists
+        if not Department.query.get(form.doc_address.data) and form.doc_address.data and form.doc_department.data:
+            print("didn't see this department, adding")
+            d = Department(address = form.doc_address.data, department_name = form.doc_department.data)
+            db.session.add(d)
+            db.session.commit()
+            print("added department: ", Department.query.get(form.doc_address.data))
+        elif not Department.query.get(form.doc_address.data):
+            return render_template('newreport.html',title='New Report', form=form, error="New Department Detected: Please Include All Info")
+
+
         #Add report to the db
         if Report.query.get(form.report_id.data):
             return render_template('newreport.html',title='New Report',form=form, error="Duplicated Report ID")
@@ -134,6 +155,10 @@ def clean_house():
         db.session.delete(m)
     for r in Report.query.all():
         db.session.delete(r)
+    for h in Hospital.query.all():
+        db.session.delete(h)
+    for d in Department.query.all():
+        db.session.delete(d)
     db.session.commit()
     print("List of patients after: ", Patient.query.all())
     return redirect('/index')
