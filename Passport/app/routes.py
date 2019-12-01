@@ -19,7 +19,7 @@ def search():
             if Report.query.get(form.report_id.data):
                 #Only a specfic report
                 return render_template('results.html', patient = Patient.query.get(form.patient_id.data), form=form, 
-                                        type='report', reports = Report.query.get(form.report_id.data).filter_by(r.ssn == patient.ssn))
+                                        type='report', reports = Report.query.filter_by(ssn = form.patient_id.data))
             else:
                 return render_template('search.html',title='Search',form=form, error="Invalid Report")
 
@@ -51,13 +51,14 @@ def search():
                         if m.report_id == r.report_id:
                             meds_filtered.append(m)
                     for d in Doctor.query.all():
-                        if d.doc_id == r.doc_id and d not in docs_filters:
-                            docs_filters.append(d)
+                        if d.doc_id == r.doc_id:
+                            if d not in docs_filters:
+                                docs_filters.append(d)
 
                 return render_template('results.html', patient=patient, form=form,
                                         type='generic', 
                                         medications=meds_filtered, doctors=docs_filters, reports = reports)
-            else:
+            else: 
                 return render_template('search.html',title='Search',form=form, error="Invalid Patient")
 
     return render_template('search.html',title='Search',form=form)
@@ -106,7 +107,7 @@ def newreport():
 @app.route('/newpatient', methods=['GET','POST'])
 def newPatient():
     form = NewPatientForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit() and  not Patient.query.get(form.ssn.data):
         p = Patient(ssn=form.ssn.data, 
             full_name = form.full_name.data,
             dob = form.dob.data,
@@ -117,6 +118,9 @@ def newPatient():
         print("Added: ",form.ssn.data, form.full_name.data,form.dob.data,form.phone.data,form.gender.data)
         #Redirect instead of render_template?
         return render_template('index.html', create = "Patient", form = form)
+    elif Patient.query.get(form.ssn.data):
+        print("NON UNIQUE PATIENT ERROR")
+        return render_template('newpatient.html',title='NewPatient', form = form, error = "NON UNIQUE PATIENT ERROR")
     return render_template('newpatient.html',title='NewPatient', form = form)
 
 @app.route('/clean_house')
@@ -180,10 +184,10 @@ def delete_report(report_id):
         print("Deleting med",m)
             
     #Remove meds if their report was removed.
-    #for m in Medication.query.all():
-    #    if m.report_id in deleted_reports:
-    #        print("Deleting med",m.med_id)
-    #        db.session.delete(m)
+    for m in Medication.query.all():
+        if m.report_id in deleted_reports:
+            print("Deleting med",m.med_id)
+            db.session.delete(m)
 
     db.session.commit()
     return redirect('/search')

@@ -2,7 +2,15 @@
 
 {% block content %}
     <h1>New Patient Form</h1>
-    <p>{% if error %}*{{error}}*{% endif%}</p>
+
+    {% if error %}
+        <!--<div class="createNew">Created new Report for Patient {{form.ssn.data}}</div>-->
+        <div class="alert alert-danger alert-dismissible">
+            <a href="/newpatient" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Failure!</strong> There is already a patient with this id: {{form.ssn.data}}
+        </div>
+    {% endif %}
+
     <div class="form">
         <form action="" method="post" novalidate>
             <!-- sizes of forms are so wack so that they line up with our current prompts -->
