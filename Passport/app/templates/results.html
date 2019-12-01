@@ -36,8 +36,10 @@
                     <thead>
                         <tr>
                             <th scope="col">Doctor Visited</th>
-                            <th scope="col">Address of Hospital Visited</th>
-                            <th scope="col">Want to delete?</th>
+                            <th scope="col">Hospital</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Address</th>
+                            <th scope="col"> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,6 +49,16 @@
                                 <tr>
                                     
                                     <td>{{d.doc_name}}</td>
+                                    {% for h in hospitals %}
+                                        {% if h.address == d.address %}
+                                            <td>{{h.hospital_name}}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% for dep in departments %}
+                                        {% if dep.address == d.address %}
+                                            <td>{{dep.department_name}}</td>
+                                        {% endif %}
+                                    {% endfor %}
                                     <td>{{d.address}}</td>
                                     <td><a href = '/delete_doc/{{d.doc_id}}'> Delete </a></p></td>
                                 </tr>
@@ -64,7 +76,7 @@
                         <tr>
                             <th scope="col">Medication ID</th>
                             <th scope="col">Report which Medication ID Prescribed</th>
-                            <th scope="col">Want to delete?</th>
+                            <th scope="col"> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,7 +104,8 @@
                             <th scope="col">Doctor Visited</th>
                             <th scope="col">Medication Prescribed</th>
                             <th scope="col">Purpose of Visit</th>
-                            <th scope="col">Want to delete?</th>
+                            <th scope="col">Patient Info</th>
+                            <th scope="col"> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -103,6 +116,7 @@
                                     <td>{{r.doc_id}}</td>
                                     <td>{{r.med_id}}</td>
                                     <td>{{r.purpose}}</td>
+                                    <td>{{r.patient_info}}</td>
                                     <td><a href = '/delete_report/{{r.report_id}}'> Delete </a></p></td>
                                 </tr>
                             {% endif %}

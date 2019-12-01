@@ -57,7 +57,7 @@ def search():
 
                 return render_template('results.html', patient=patient, form=form,
                                         type='generic', 
-                                        medications=meds_filtered, doctors=docs_filters, reports = reports)
+                                        medications=meds_filtered, doctors=docs_filters, reports = reports, hospitals = Hospital.query.all(), departments = Department.query.all())
             else: 
                 return render_template('search.html',title='Search',form=form, error="Invalid Patient")
 
@@ -121,7 +121,6 @@ def newreport():
         db.session.commit()
 
         print("Added: ",form.report_id.data,form.ssn.data,form.doc_id.data,form.med_id.data,form.purpose.data,form.patient_info.data,)
-        #Redirect instead of render_template
         return render_template('index.html', create = "Report", form = form)
     return render_template('newreport.html',title='NewReport', form = form)
 
