@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app, db
-from app.forms import SearchForm, NewPatientForm, NewReportForm
+from app.forms import SearchForm, NewPatientForm, NewReportForm, EditReport
 from flask import render_template, flash, redirect
 from app.models import Report, Doctor, Patient, Medication, Hospital, Department
 
@@ -17,9 +17,9 @@ def search():
     if form.validate_on_submit():
         if form.report_id.data:
             if Report.query.get(form.report_id.data):
-                #Only a specfic report
-                return render_template('results.html', patient = Patient.query.get(form.patient_id.data), form=form, 
-                                        type='report', reports = Report.query.filter_by(ssn = form.patient_id.data))
+            #Only a specfic report
+                return redirect('/editreport/' + form.report_id.data)
+                #return render_template('editreport.html', form=form)
             else:
                 return render_template('search.html',title='Search',form=form, error="Invalid Report")
 
@@ -88,23 +88,23 @@ def newreport():
             return render_template('newreport.html',title='New Report',form=form, error="New Doctor Detected: Please Include All Info")
 
         #See if the hopsital exists
-        if not Hospital.query.get(form.doc_address.data) and form.hospital_name.data and form.doc_address.data:
+        if (not Doctor.query.get(form.doc_id.data) and not Hospital.query.get(form.doc_address.data)) and form.hospital_name.data and form.doc_address.data:
             print("didn't see this hospital, adding")
             h = Hospital(hospital_name = form.hospital_name.data, address = form.doc_address.data)
             db.session.add(h)
             db.session.commit()
             print("added hospital: ", Hospital.query.get(form.doc_address.data))
-        elif not Hospital.query.get(form.hospital_name.data):
+        elif (not Doctor.query.get(form.doc_id.data) and not Hospital.query.get(form.doc_address.data)):
             return render_template('newreport.html',title='New Report', form=form, error="New Hospital Detected: Please Include All Info")
 
         #See if the department exists
-        if not Department.query.get(form.doc_address.data) and form.doc_address.data and form.doc_department.data:
+        if (not Doctor.query.get(form.doc_id.data) and not Department.query.get(form.doc_address.data)) and form.doc_address.data and form.doc_department.data:
             print("didn't see this department, adding")
             d = Department(address = form.doc_address.data, department_name = form.doc_department.data)
             db.session.add(d)
             db.session.commit()
             print("added department: ", Department.query.get(form.doc_address.data))
-        elif not Department.query.get(form.doc_address.data):
+        elif (not Doctor.query.get(form.doc_id.data) and not Department.query.get(form.doc_address.data)):
             return render_template('newreport.html',title='New Report', form=form, error="New Department Detected: Please Include All Info")
 
 
@@ -123,6 +123,34 @@ def newreport():
         print("Added: ",form.report_id.data,form.ssn.data,form.doc_id.data,form.med_id.data,form.purpose.data,form.patient_info.data,)
         return render_template('index.html', create = "Report", form = form)
     return render_template('newreport.html',title='NewReport', form = form)
+
+@app.route('/editreport/<string:report_id>', methods=['GET','POST'])
+def editReport(report_id):
+    form = EditReport()
+    report = Report.query.get(report_id)
+    
+    if form.validate_on_submit():
+        report.report_id = form.report_id.data 
+        report.ssn = form.ssn.data 
+        report.doc_id = form.doc_id.data 
+        report.med_id = form.med_id.data 
+        report.purpose = form.purpose.data 
+        report.patient_info = form.patient_info.data 
+        db.session.commit()
+        print("tried to edit atleast")
+
+
+    
+    #Preload form with previous info
+    form.report_id.data = report.report_id
+    form.ssn.data = report.ssn
+    form.doc_id.data = report.doc_id
+    form.med_id.data = report.med_id
+    form.purpose.data = report.purpose
+    form.patient_info.data = report.patient_info
+    
+    
+    return render_template('editreport.html',title="EditReport", form=form)
 
 @app.route('/newpatient', methods=['GET','POST'])
 def newPatient():

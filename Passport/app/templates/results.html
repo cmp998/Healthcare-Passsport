@@ -35,7 +35,8 @@
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Doctor Visited</th>
+                            <th scope="col">Doctor Name</th>
+                            <th scope="col">Doctor ID</th>
                             <th scope="col">Hospital</th>
                             <th scope="col">Department</th>
                             <th scope="col">Address</th>
@@ -49,6 +50,7 @@
                                 <tr>
                                     
                                     <td>{{d.doc_name}}</td>
+                                    <td>{{d.doc_id}}</td>
                                     {% for h in hospitals %}
                                         {% if h.address == d.address %}
                                             <td>{{h.hospital_name}}</td>
