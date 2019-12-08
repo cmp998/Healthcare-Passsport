@@ -5,7 +5,6 @@
 
     <div class="form">
         <form action="" method="post" novalidate>
-            <!-- sizes of forms are so wack so that they line up with our current prompts -->
             {{ form.hidden_tag() }}
             <p>{{ form.report_id.label }} {{ form.report_id(size=34) }}</p>
             <p>{{ form.ssn.label }} {{ form.ssn(size=38) }}</p>

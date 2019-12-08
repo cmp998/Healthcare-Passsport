@@ -7,7 +7,6 @@ class Patient(db.Model):
     dob = db.Column(db.String(120),nullable=False)
     phone = db.Column(db.String(10),nullable=False)
     full_name = db.Column(db.String(50),nullable=False)
-    #reports = db.relationship('Reports', backref = 'patient')
 
     def __repr__(self):
         return '<Patient {}>'.format(self.full_name)

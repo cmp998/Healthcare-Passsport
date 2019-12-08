@@ -1,26 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>RESULTS</h1>
     <div class="createNew">
         <div class="container">
             <div class="row">
+                <div class="col">
+                    <h1>RESULTS</h1>
+                </div>
                 <div class="col">
                     <h2>General Patient Info</h2>
                     <div>SSN: {{patient.ssn}}</div>
                     <div>DOB: {{patient.dob}}</div>
                     <div>Phone: {{patient.phone}}</div>
-                    <div>Gender: {{patient.gender}}</div>
-                    
-                </div>
-                <div class="col">
-                    <h2>Search Criteria</h2>
-                        {% if form%}
-                            <div>Patient: {{form.patient_id.data}}</div>
-                            <div>Doctor: {{form.doctor_id.data}}</div>
-                            <div>Medication: {{form.medication_id.data}}</div>
-                            <div>Report: {{form.report_id.data}}</div>
-                        {% endif %}
+                    <div>Gender: {{patient.gender}}</div>   
                 </div>
             </div>
         </div>
@@ -62,7 +54,10 @@
                                         {% endif %}
                                     {% endfor %}
                                     <td>{{d.address}}</td>
-                                    <td><a href = '/delete_doc/{{d.doc_id}}'> Delete </a></p></td>
+                                    <td>
+                                        <a href = '/delete_doc/{{d.doc_id}}'> Delete </a>
+                                        <a href = '/editdoctor/{{d.doc_id}}'> Edit </a>
+                                    </td>
                                 </tr>
                                 {% endif %}
                             {% endfor %}
@@ -88,7 +83,10 @@
                                     <tr>
                                         <td>{{m.med_id}}</td>
                                         <td>{{m.report_id}}</td>
-                                        <td><a href = '/delete_med/{{m.med_id}}'> Delete </a></p></td>
+                                        <td>
+                                            <a href = '/delete_med/{{m.med_id}}'> Delete </a>
+                                            <a href = '/editmed/{{r.report_id}}/{{m.med_id}}'> Edit </a>
+                                        </td>
                                     </tr>
                                 {% endif %}
                             {% endfor %}
@@ -119,7 +117,10 @@
                                     <td>{{r.med_id}}</td>
                                     <td>{{r.purpose}}</td>
                                     <td>{{r.patient_info}}</td>
-                                    <td><a href = '/delete_report/{{r.report_id}}'> Delete </a></p></td>
+                                    <td>
+                                        <a href = '/delete_report/{{r.report_id}}'> Delete </a>
+                                        <a href = '/editreport/{{r.report_id}}'> Edit </a>
+                                    </td>
                                 </tr>
                             {% endif %}
                         {% endfor %}
@@ -127,28 +128,6 @@
                 </table>
             </div>
         {% endif %}
-
-        {% if type == 'medication'%}
-            <div>
-                <p>{{ patient.full_name }} has taken <b>{{ medications.med_id }}</b>
-                <a href = '/delete_med/{{medications.med_id}}'> Delete </a></p>
-            </div>
-        {% endif %}
-
-        {% if type == 'report'%}
-            <div>
-                <p>{{ patient.full_name }} has a <b>report{{ reports.report_id }}</b>. Purpose of visit <b>{{reports.purpose}}</b>. Saw <b>doctor{{reports.doc_id}}</b>. Was prescribed <b>med{{reports.med_id}}</b>
-                <a href = '/delete_report/{{r.report_id}}'> Delete </a></p>
-            </div>
-        {% endif %}
-
-        {% if type == 'doctor'%}
-            <div>
-                <p>{{ patient.full_name }} has visited <b>{{ doctors.doc_id }}</b>
-                <a href = '/delete_doc/{{doctors.doc_id}}'> Delete </a></p>
-            </div>
-        {% endif %}
-
     
     </div>
 {% endblock %}
