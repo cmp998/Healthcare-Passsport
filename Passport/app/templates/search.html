@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<<<<<<< HEAD
 <div class="lightGreyBackground">
     <h1 class='pt-4 mb-4'>Search</h1>
 
@@ -12,19 +11,6 @@
         </div>
     {% endif %}
 
-=======
-<head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-</head>
-    <div class="lightGreyBackground">
-    <h1>Search</h1>
-    {% if error %}
-    <div class="alert alert-danger alert-dismissible">
-        <a href="/newpatient" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Failure!</strong> {{error}}
-    </div>
-    {% endif %}
->>>>>>> e50bb1105977c0db68fa9010e01e17bac61bfde6
     <div class="form">
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
