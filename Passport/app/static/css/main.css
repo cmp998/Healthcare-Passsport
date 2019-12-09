@@ -1,3 +1,6 @@
+html,body{
+    height:100%;
+}
 h1 {
     font-weight:bold;
     text-align:center;
@@ -14,6 +17,13 @@ div.createNew{
 }
 div.centerTable{
     margin: 100px 100px 100px 100px;
+}
+div.lightGreyBackground{
+    background-color: lightgray;
+    min-height: 100%;
+}
+div.darkGreenBackground{
+    background-color: #556B2F;
 }
 p1 {
     font-weight:bold;

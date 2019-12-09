@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
+    <div class="lightGreyBackground">
     <h1>Search</h1>
     <p>{% if error %}*{{error}}*{% endif%}</p>
     <div class="form">
@@ -30,4 +31,5 @@
 
         </form>
     </div>
+</div>
 {% endblock %}

@@ -3,21 +3,30 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
       <!-- main navigation bar that goes on each page -->
-      <nav class="navbar navbar-default">
-          <div class="navbar-header" ><a class="navbar-brand" style="font-size: 50px;">Healthcare Passport</a></div>
-          <div class ="navbar navbar-expand bg-light justify-content-center">
-              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/index">Home</a></li></ul>
-              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/search">Search</a></li></ul>
-              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/clean_house">Clean House</a></li></ul>
-              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/newpatient">Create New Patient</a></li></ul>
-              <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/newreport">Create New Report</a></li></ul>
-          </div>
-        </nav>
+
+
+
+
+      
+      <div class="darkGreenBackground">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header" ><a class="navbar-brand" style="font-size: 50px; color:white;">Healthcare Passport</a></div>
+            <div class ="navbar navbar-expand  justify-content-center">
+                <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/index" style="color:white">Home</a></li></ul>
+                <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/search" style="color:white">Search</a></li></ul>
+                <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/clean_house" style="color:white">Clean House</a></li></ul>
+                <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/newpatient" style="color:white">Create New Patient</a></li></ul>
+                <ul class="navbar-nav ml-auto"><li class = "nav-item"><a class = "nav-link" href="/newreport" style="color:white">Create New Report</a></li></ul>
+            </div>
+            </nav>
+        </div>  
     </head>
     <body> 
+        <div class="lightGreyBackground">
+            
+            {% block content %}{% endblock %}
         </div>
-        <hr>
-        {% block content %}{% endblock %}
+       
     </body>
 </html>
 
