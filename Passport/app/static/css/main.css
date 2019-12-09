@@ -19,11 +19,11 @@ div.centerTable{
     margin: 100px 100px 100px 100px;
 }
 div.lightGreyBackground{
-    background-color: lightgray;
+    background-color: white;
     min-height: 100%;
 }
 div.darkGreenBackground{
-    background-color: #556B2F;
+    background-color:green;
 }
 p1 {
     font-weight:bold;

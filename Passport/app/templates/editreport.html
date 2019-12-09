@@ -6,13 +6,17 @@
     <div class="form">
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
-            <p>{{ form.report_id.label }} {{ form.report_id(size=34) }}</p>
-            <p>{{ form.ssn.label }} {{ form.ssn(size=38) }}</p>
-            <p>{{ form.doc_id.label }} {{ form.doc_id(size=37) }}</p>
-            <p>{{ form.med_id.label }} {{ form.med_id(size=38) }}</p>
-            <p>{{ form.purpose.label }} {{ form.purpose(size=31) }}</p>
-            <p>{{ form.patient_info.label }} {{ form.patient_info(size=35) }}</p>
-            <p>{{ form.submit() }}</p>
+            <table align="center">
+                <tbody>
+                    <tr><td>{{ form.report_id.label }}</td><td>{{ form.report_id(size=34) }}</td></tr>
+                    <tr><td>{{ form.ssn.label }} </td><td> {{ form.ssn(size=38) }}</td></tr>
+                    <tr><td>{{ form.doc_id.label }}</td><td>{{ form.doc_id(size=37) }}</td></tr>
+                    <tr><td>{{ form.med_id.label }} </td><td> {{ form.med_id(size=38) }}</td></tr>
+                    <tr><td>{{ form.purpose.label }}</td><td>{{ form.purpose(size=31) }}</td></tr>
+                    <tr><td>{{ form.patient_info.label }} </td><td> {{ form.patient_info(size=35) }}</td></tr>
+                </tbody>
+            </table>
+            <p class = "pt-4">{{ form.submit() }}</p>
         </form>    
     </div>
 {% endblock %}

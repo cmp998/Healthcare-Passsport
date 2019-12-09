@@ -9,17 +9,21 @@
             <strong>Failure!</strong> There is already a patient with this id: {{form.ssn.data}}
         </div>
     {% endif %}
-    <h1>New Patient Form</h1>
+    <h1 class='pt-4 mb-4'>New Patient Form</h1>
+
     <div class="form">
         <form action="" method="post" novalidate>
-            <!-- sizes of forms are so wack so that they line up with our current prompts -->
             {{ form.hidden_tag() }}
-            <p>{{ form.ssn.label }} {{ form.ssn(size=32) }}</p>
-            <p>{{ form.full_name.label }} {{ form.full_name(size=28) }}</p>
-            <p>{{ form.dob.label }} {{ form.dob(size=32) }}</p>
-            <p>{{ form.phone.label }} {{ form.phone(size=31) }}</p>
-            <p>{{ form.gender.label }} {{ form.gender(size=30) }}</p>
-            <p>{{ form.submit() }}</p>
-        </form>    
+            <table align="center">
+                <tbody>
+                    <tr><td>{{ form.ssn.label }}</td><td>{{ form.ssn(size=30) }}</td></tr>
+                    <tr><td>{{ form.full_name.label }} </td><td> {{ form.full_name(size=30) }}</td></tr>
+                    <tr><td>{{ form.dob.label }}</td><td>{{ form.dob(size=30) }}</td></tr>
+                    <tr><td>{{ form.phone.label }} </td><td> {{ form.phone(size=30) }}</td></tr>
+                    <tr><td>{{ form.gender.label }}</td><td>{{ form.gender(size=30) }}</td></tr>
+                </tbody>
+            </table>
+            <p class = "pt-4">{{ form.submit() }}</p>
+        </form>   
     </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>New Report Form</h1>
+    <h1 class="pt-4 mb-4">New Report Form</h1>
 
     {% if error %}
         <div class="alert alert-danger alert-dismissible">
@@ -10,24 +10,27 @@
         </div>
     {% endif %}
 
-    <div class="form">
+    <div class="form pt-4">
         <form action="" method="post" novalidate>
-            <!-- sizes of forms are so wack so that they line up with our current prompts -->
             {{ form.hidden_tag() }}
-            <!-- Necessary information -->
-            <p>{{ form.report_id.label }} {{ form.report_id(size=34) }}</p>
-            <p>{{ form.ssn.label }} {{ form.ssn(size=38) }}</p>
-            <p>{{ form.doc_id.label }} {{ form.doc_id(size=37) }}</p>
-            <p>{{ form.med_id.label }} {{ form.med_id(size=38) }}</p>
-            <p>{{ form.purpose.label }} {{ form.purpose(size=31) }}</p>
-            <p>{{ form.patient_info.label }} {{ form.patient_info(size=35) }}</p>
-            <!-- Auxillary information -->
-            <p>{{ form.doc_name.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {{ form.doc_name(size=34) }}</p>
-            <p>{{ form.doc_address.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {% if error == "New Hospital Detected: Please Include All Info" %}*{% endif%}{% if error == "New Department Detected: Please Include All Info" %}*{% endif%} {{ form.doc_address(size=33) }}</p>
-            <p>{{ form.doc_department.label }} {% if error == "New Department Detected: Please Include All Info" %}*{% endif%} {{ form.doc_department(size=34) }}</p>
-            <p>{{ form.hospital_name.label}}{% if error == "New Department Detected: Please Include All Info" %}*{% endif%}{% if error == "New Hospital Detected: Please Include All Info" %}*{% endif%}{{ form.hospital_name(size=30) }}</p>
-            <p>{{ form.submit() }}</p>
-        </form>    
+            <table align="center">
+                <tbody>
+                    <!-- Necessary information -->
+                    <tr><td>{{ form.report_id.label }}</td><td>{{ form.report_id(size=35) }}</td></tr>
+                    <tr><td>{{ form.ssn.label }} </td><td> {{ form.ssn(size=35) }}</td></tr>
+                    <tr><td>{{ form.doc_id.label }}</td><td>{{ form.doc_id(size=35) }}</td></tr>
+                    <tr><td>{{ form.med_id.label }} </td><td>{{ form.med_id(size=35) }}</td></tr>
+                    <tr><td>{{ form.purpose.label }} </td><td> {{ form.purpose(size=35) }}</td></tr>
+                    <tr><td>{{ form.patient_info.label }}</td><td>{{ form.patient_info(size=35) }}</td></tr>
+                    <!-- Auxillary information -->
+                    <tr><td>{{ form.doc_name.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%}</td><td>{{ form.doc_name(size=35) }}</td></tr>
+                    <tr><td>{{ form.doc_address.label }}{% if error == "New Doctor Detected: Please Include All Info" %}*{% endif%} {% if error == "New Hospital Detected: Please Include All Info" %}*{% endif%}{% if error == "New Department Detected: Please Include All Info" %}*{% endif%} </td><td> {{ form.doc_address(size=35) }}</td></tr>
+                    <tr><td>{{ form.department_name.label }} {% if error == "New Department Detected: Please Include All Info" %}*{% endif%}</td><td>{{ form.department_name(size=35) }}</td></tr>
+                    <tr><td>{{ form.hospital_name.label}}{% if error == "New Department Detected: Please Include All Info" %}*{% endif%}{% if error == "New Hospital Detected: Please Include All Info" %}*{% endif%} </td><td> {{ form.hospital_name(size=35) }}</td></tr>
+                </tbody>
+            </table>
+            <p class = "pt-4">{{ form.submit() }}</p>
+        </form>   
     </div>
 {% endblock %}
 

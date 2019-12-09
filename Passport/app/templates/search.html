@@ -1,35 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-</head>
-    <div class="lightGreyBackground">
-    <h1>Search</h1>
-    <p>{% if error %}*{{error}}*{% endif%}</p>
+<div class="lightGreyBackground">
+    <h1 class='pt-4 mb-4'>Search</h1>
+
+    {% if error %}
+        <div class="alert alert-danger alert-dismissible">
+            <a href="/search" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Failure!</strong> {{error}}
+        </div>
+    {% endif %}
+
     <div class="form">
         <form action="" method="post" novalidate>
-            <!-- sizes of forms are so wack so that they line up with our current prompts -->
             {{ form.hidden_tag() }}
-            <p>
-                {{ form.patient_id.label }}
-                {{ form.patient_id(size=40) }}
-            </p>
-            <p>
-                {{ form.doctor_id.label }}
-                {{ form.doctor_id(size=40) }}
-            </p>
-            <p>
-                {{ form.medication_id.label }}
-                {{ form.medication_id(size=37) }}
-            </p>
-            <p>
-                {{ form.report_id.label }} 
-                {{ form.report_id(size=40) }}
-            </p>
-            <p>{{ form.submit() }}</p>
-
-        </form>
+            <table align="center">
+                <tbody>
+                    <tr><td>{{ form.patient_id.label }}</td><td>{{ form.patient_id(size=40) }}</td></tr>
+                    <tr><td>{{ form.doctor_id.label }} </td><td> {{ form.doctor_id(size=40) }}</td></tr>
+                    <tr><td>{{ form.medication_id.label }}</td><td>{{ form.medication_id(size=40) }}</td></tr>
+                    <tr><td>{{ form.report_id.label }} </td><td> {{ form.report_id(size=40) }}</td></tr>
+                </tbody>
+            </table>
+            <p class = "pt-4">{{ form.submit() }}</p>
+        </form>   
     </div>
 </div>
 {% endblock %}

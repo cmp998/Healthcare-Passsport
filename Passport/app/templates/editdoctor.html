@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Edit Existing Doctor Form</h1>
+    <h1 class="pt-4 mb-4">Edit Existing Doctor Form</h1>
 
     <div class="form">
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
-            <p>{{ form.doc_id.label }} {{ form.doc_id(size=34) }}</p>
-            <p>{{ form.doc_name.label }} {{ form.doc_name(size=38) }}</p>
-            <p>{{ form.address.label }} {{ form.address(size=37) }}</p>
-            <p>{{ form.department.label }} {{ form.department(size=37) }}</p>
-            <p>{{ form.hospital_name.label }} {{ form.hospital_name(size=37) }}</p>
-            <p>{{ form.submit() }}</p>
+            <table align="center">
+                <tbody>
+                    <tr><td>{{ form.doc_id.label }}</td><td>{{ form.doc_id(size=35) }}</td></tr>
+                    <tr><td>{{ form.doc_name.label }} </td><td> {{ form.doc_name(size=35) }}</td></tr>
+                    <tr><td>{{ form.address.label }} </td><td> {{ form.address(size=35) }}</td></tr>
+                    <tr><td>{{ form.department_name.label }} </td><td> {{ form.department_name(size=35) }}</td></tr>
+                    <tr><td>{{ form.hospital_name.label }} </td><td> {{ form.hospital_name(size=35) }}</td></tr>
+                </tbody>
+            </table>
+            <p class = "pt-4">{{ form.submit() }}</p>
         </form>    
     </div>
 {% endblock %}

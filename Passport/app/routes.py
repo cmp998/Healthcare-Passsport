@@ -76,7 +76,6 @@ def newreport():
                 db.session.commit()
                 print("added meds: ", Medication.query.get(med_id))
 
-        #TODO0---------------------------------------------------
         #DOCTOR CHECK
         #NEED TO CREATE DOCTOR W/ GIVEN INFO
         if not Doctor.query.get(form.doc_id.data) and form.doc_name.data and form.doc_address.data:
@@ -91,7 +90,7 @@ def newreport():
                 print("didn't see this hospital, adding")
                 h = Hospital(hospital_name = form.hospital_name.data, address = form.doc_address.data)
                 db.session.add(h)
-                dep = Department(address = form.doc_address.data, department_name = form.doc_department.data)
+                dep = Department(address = form.doc_address.data, department_name = form.department_name.data)
                 db.session.add(dep)
                 db.session.commit()
                 print("add hop :", Hospital.query.get(form.doc_address.data))
@@ -100,9 +99,9 @@ def newreport():
                 return render_template('newreport.html',title='New Report', form=form, error="New Hospital Detected: Please Include All Info")
 
             #THIS SHOULD BE IF WE HAVE HOSPITAL INFO 
-            if not Department.query.get(form.doc_address.data) and form.doc_department.data:
+            if not Department.query.get(form.doc_address.data) and form.department_name.data:
                 print("didn't see this department, adding")
-                dep = Department(address = form.doc_address.data, department_name = form.doc_department.data)
+                dep = Department(address = form.doc_address.data, department_name = form.department_name.data)
                 db.session.add(dep)
                 db.session.commit()
                 print("add depo :", Hospital.query.get(form.doc_address.data))
@@ -125,9 +124,9 @@ def newreport():
             return render_template('newreport.html',title='New Report', form=form, error="New Hospital Detected: Please Include All Info")
 
         #See if the department exists
-        if (not Doctor.query.get(form.doc_id.data) and not Department.query.get(form.doc_address.data)) and form.doc_address.data and form.doc_department.data:
+        if (not Doctor.query.get(form.doc_id.data) and not Department.query.get(form.doc_address.data)) and form.doc_address.data and form.department_name.data:
             print("didn't see this department, adding")
-            d = Department(address = form.doc_address.data, department_name = form.doc_department.data)
+            d = Department(address = form.doc_address.data, department_name = form.department_name.data)
             db.session.add(d)
             db.session.commit()
             print("added department: ", Department.query.get(form.doc_address.data))
@@ -163,7 +162,7 @@ def editDoctor(doc_id):
         doc.doc_name = form.doc_name.data
         doc.address = form.address.data
         hop.hospital_name = form.hospital_name.data
-        dep.department_name = form.department.data
+        dep.department_name = form.department_name.data
         db.session.commit()
         print("did the edits")
 
@@ -171,7 +170,7 @@ def editDoctor(doc_id):
     form.doc_id.data = doc.doc_id
     form.doc_name.data = doc.doc_name
     form.address.data = doc.address
-    form.department.data = dep.department_name
+    form.department_name.data = dep.department_name
     form.hospital_name.data = hop.hospital_name
 
     return render_template('editdoctor.html',title="EditDoctor", form=form)

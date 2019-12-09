@@ -2,30 +2,14 @@
 
 {% block content %}
     <div class="createNew">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>RESULTS</h1>
-                </div>
-                <div class="col">
-                    <h2>General Patient Info</h2>
-                    <div>SSN: {{patient.ssn}}</div>
-                    <div>DOB: {{patient.dob}}</div>
-                    <div>Phone: {{patient.phone}}</div>
-                    <div>Gender: {{patient.gender}}</div>   
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-
+    </br>
         {% if type == 'generic'%}
-            <h2>Full Patient Overview</h2>
+            <h2 class="mb-4">Full Patient Overview: {{patient.full_name}}</h2>
             <!-- DOCTORS -->
             <h4>LIST OF DOCTORS</h4>
-            <div class="table-responsive-sm">
+            <div class="table-responsive-sm w-75" style='margin-left: 12.5%'>
                 <table class="table table-striped table-bordered table-hover">
-                    <thead>
+                    <thead style='background-color:green;color:white'>
                         <tr>
                             <th scope="col">Doctor Name</th>
                             <th scope="col">Doctor ID</th>
@@ -67,9 +51,9 @@
             </div>
             <!-- MEDICATIONS -->
             <h4>LIST OF MEDICATION</h4>
-            <div class = "table-responsive-sm">
+            <div class = "table-responsive-sm w-75" style='margin-left: 12.5%'>
                 <table class="table table-striped table-bordered table-hover">
-                    <thead>
+                    <thead style='background-color:green;color:white'>
                         <tr>
                             <th scope="col">Medication ID</th>
                             <th scope="col">Report which Medication ID Prescribed</th>
@@ -96,9 +80,9 @@
             </div>
             <!-- REPORTS -->
             <h4>LIST OF REPORTS</h4>
-            <div class ="table-responsive-sm">
+            <div class ="table-responsive-sm w-75" style='margin-left: 12.5%'>
                 <table class ="table table-striped table-bordered table-hover">
-                    <thead>
+                    <thead style='background-color:green;color:white'>
                         <tr>
                             <th scope="col">Report #</th>
                             <th scope="col">Doctor Visited</th>
