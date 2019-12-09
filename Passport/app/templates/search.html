@@ -6,7 +6,12 @@
 </head>
     <div class="lightGreyBackground">
     <h1>Search</h1>
-    <p>{% if error %}*{{error}}*{% endif%}</p>
+    {% if error %}
+    <div class="alert alert-danger alert-dismissible">
+        <a href="/newpatient" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failure!</strong> {{error}}
+    </div>
+    {% endif %}
     <div class="form">
         <form action="" method="post" novalidate>
             <!-- sizes of forms are so wack so that they line up with our current prompts -->
