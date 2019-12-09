@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit Existing Medication Form</h1>
+
+    <div class="form">
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>{{ form.med_id.label }} {{ form.med_id(size=34) }}</p>
+            <p>{{ form.report_id.label }} {{ form.report_id(size=32) }}</p>
+            <p>{{ form.submit() }}</p>
+        </form>    
+    </div>
+{% endblock %}

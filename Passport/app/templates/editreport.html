@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit Existing Report Form</h1>
+
+    <div class="form">
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>{{ form.report_id.label }} {{ form.report_id(size=34) }}</p>
+            <p>{{ form.ssn.label }} {{ form.ssn(size=38) }}</p>
+            <p>{{ form.doc_id.label }} {{ form.doc_id(size=37) }}</p>
+            <p>{{ form.med_id.label }} {{ form.med_id(size=38) }}</p>
+            <p>{{ form.purpose.label }} {{ form.purpose(size=31) }}</p>
+            <p>{{ form.patient_info.label }} {{ form.patient_info(size=35) }}</p>
+            <p>{{ form.submit() }}</p>
+        </form>    
+    </div>
+{% endblock %}
+

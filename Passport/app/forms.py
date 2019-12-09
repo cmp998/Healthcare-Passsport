@@ -30,3 +30,25 @@ class NewReportForm(FlaskForm):
     doc_department = StringField('Doc_Department')
     hospital_name = StringField("Hospital_Name")
     submit = SubmitField('Create')
+
+class EditReport(FlaskForm):
+    report_id = StringField('ReportID*', validators=[DataRequired()])
+    ssn = StringField('SSN*', validators=[DataRequired()])
+    doc_id = StringField('DocID*', validators=[DataRequired()])
+    med_id = StringField('MedID')
+    purpose = StringField('Purpose of Visit')
+    patient_info = StringField('PatientInfo')
+    submit = SubmitField('Edit')
+
+class EditDoctor(FlaskForm):
+    doc_id = StringField('DocID*', validators=[DataRequired()])
+    doc_name = StringField('Doc_Name')
+    address = StringField('Doc_Address')
+    department = StringField('Doc_Department')
+    hospital_name = StringField("Hospital_Name")
+    submit = SubmitField('Edit')
+
+class EditMed(FlaskForm):
+    report_id = StringField('ReportID*')
+    med_id = StringField('MedID', validators=[DataRequired()])
+    submit = SubmitField('Edit')
